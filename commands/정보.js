@@ -3,7 +3,7 @@
 // Feel free to change any of the footers but do not claim that you made this command as it can be completely rude.
 const roblox = require("noblox.js");
 require('dotenv').config();
-const prefix = "!";
+const prefix = ";";
 const groupId = 3828960;
 
 exports.run = async (client, message, args) => {
@@ -14,15 +14,15 @@ exports.run = async (client, message, args) => {
      embed: {
        color: 13632027,
        description:
-          `**You did not provide the \`username\` argument.**\n` +
+          `사용자 이름을 입력 해주세요.` +
           `\n` +
-          `**Usage:** \`${prefix}getinfo <username>\``,
+          `양식은 ${prefix}정보 닉네임 입니다.`,
         author: {
           name: message.author.tag,
           icon_url: message.author.displayAvatarURL()
         },
         footer: {
-          text: "qbot | Plugin by TypicallyShadow"
+          text: "Seohyun Core V1"
         }
       }
    });
@@ -41,14 +41,9 @@ exports.run = async (client, message, args) => {
               },
               fields: [
                 {
-                  name: `유저 닉네임`,
+                  name: `유저 이름`,
                   value: `**[${completeUsername}](https://www.roblox.com/users/${id}/profile)**`,
                   inline: false
-                },
-                {
-                  name: `유저 ID`,
-                  value: id,
-                  inline: true
                 },
                 {
                   name: `그룹 계급`,
@@ -56,16 +51,31 @@ exports.run = async (client, message, args) => {
                   inline: true
                 },
                 {
+                  name: `유저 ID`,
+                  value: `${id}`,
+                  inline: true
+                },
+                {
                     name: `계정 일 수`,
                     value: `${info.age}`,
-                    inline: false
+                    inline: true
+                },
+                {
+                  name: `소개`,
+                  value: info.status || '아무것도 없습니다.',
+                  inline: true
+                },
+                {
+                  name: `설명`,
+                  value: info.blurb || '아무것도없습니다',
+                  inline: false
                 }
               ],
               thumbnail: {
                 url: `https://assetgame.roblox.com/Thumbs/Avatar.ashx?userid=${id}`
               },              
           footer: {
-          text: ""
+          text: "Seohyun Core V1"
               }
              }
            });
@@ -75,15 +85,15 @@ exports.run = async (client, message, args) => {
     }).catch(function(err) {
       return message.channel.send({
         embed: {
-          title: `User Invalid`,
+          title: `오류`,
           color: 13632027,
-          description: `I couldn't find that user, perhaps you gave the wrong username?` + `\n` + `You provided: \`${givenUsername}\``,
+          description: `${givenUsername}를 찾을 수 없습니다 다시 입력해주세요.`,
         author: {
           name: message.author.tag,
           icon_url: message.author.displayAvatarURL()
         },
         footer: {
-          text: ""
+          text: "Seohyun Core V1"
         }
       }
     });
