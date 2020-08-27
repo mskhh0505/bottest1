@@ -1,13 +1,13 @@
 const roblox = require('noblox.js');
 const chalk = require('chalk');
-const groupId = 4483539;
 require('dotenv').config();
+const groupId = 4483539;
 
 exports.run = async (client, message, args) => {
     if(!message.member.roles.cache.some(role =>["Bot access"].includes(role.name))){
         return message.channel.send({embed: {
             color: 16733013,
-            description: "당신은 Bot access 권한이 필요 합니다.",
+            description: "이 명령어를 실행할려면 역할이 필요합니다  | 요구 역할 | Bot access",
             author: {
                 name: message.author.tag,
                 icon_url: message.author.displayAvatarURL()
@@ -30,7 +30,7 @@ exports.run = async (client, message, args) => {
     userid = await roblox.getIdFromUsername(username);
   } catch (err) {
     return message.channel.send({embed: {
-      description: '유저를 찾을 수 없습니다,',
+      description: '찾을 수 없습니다.',
       color: 16733013,
       author: {
         name: message.author.tag,
@@ -43,7 +43,7 @@ exports.run = async (client, message, args) => {
   } catch (err) {
     console.log(chalk.red('에러가 발생했습니다 에러: ' + err));
     return message.channel.send({embed: {
-      description: '에러가 발생 하였습니다, 이는 콘솔에 기록되었습니다.',
+      description: '에러가 발생했습니다 이는 콘솔에 기록되었습니다.',
       color: 16733013,
       author: {
         name: message.author.tag,
@@ -56,7 +56,7 @@ exports.run = async (client, message, args) => {
     acceptJoinRequestResponse = await roblox.handleJoinRequest(Number(groupId), userid, true);
   } catch (err) {
     return message.channel.send({embed: {
-      description: '그룹요청이 없습니다.',
+      description: `${username} 의 요청을 찾을 수 없습니다.`,
       color: 16733013,
       author: {
         name: message.author.tag,
@@ -66,7 +66,7 @@ exports.run = async (client, message, args) => {
   }
   message.channel.send({embed: {
     color: 9240450,
-    description: `**성공적!**  ${username}의 그룹요청을 수락하였습니다.`,
+    description: `성공적으로 ${username} 의 그룹 요청을 받았습니다.`,
     author: {
       name: message.author.tag,
       icon_url: message.author.displayAvatarURL()
