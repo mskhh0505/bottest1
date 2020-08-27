@@ -17,7 +17,7 @@ const roblox = require('noblox.js');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const token = process.env.token;
-const cookie = 
+const cookie = process.env.cookie;
 require('dotenv').config();
 const fs = require('fs');
 
