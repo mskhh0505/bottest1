@@ -10,16 +10,16 @@ let listener = app.listen(process.env.PORT, () => {
 });
 
 const Discord = require('discord.js');
-const prefix = ";";
-const groupId = 4483539;
 const client = new Discord.Client();
 const roblox = require('noblox.js');
 const chalk = require('chalk');
 const figlet = require('figlet');
-const token = process.env.token;
-const cookie = process.env.cookie;
 require('dotenv').config();
 const fs = require('fs');
+const groupId = 4483539;
+const cookie = process.env.cookie;
+const token = process.env.token;
+const prefix = ";";
 
 roblox.setCookie(cookie).catch(async err => {
     console.log(chalk.red('Issue with logging in: ' + err));
@@ -34,11 +34,11 @@ async function onShout(){
   let shoutchannel = await client.channels.cache.get(process.env.shoutchannelid);
   if(firstshout == true){
     firstshout = false;
-    shout = await roblox.getShout(Number(process.env.groupId));
+    shout = await roblox.getShout(Number(groupId));
     setTimeout(onShout, 30000);
   } else {
     setTimeout(onShout, 30000);
-    let currentshout = await roblox.getShout(Number(process.env.groupId));
+    let currentshout = await roblox.getShout(Number(groupId));
     if(currentshout.body == shout.body) return;
     if(currentshout.body){
       shoutchannel.send({embed: {
