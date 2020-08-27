@@ -10,7 +10,7 @@ let listener = app.listen(process.env.PORT, () => {
 });
 
 const Discord = require('discord.js');
-const prefix = "!";
+const prefix = ";";
 const groupId = 4483539;
 const client = new Discord.Client();
 const roblox = require('noblox.js');
